@@ -26,13 +26,13 @@ set(libprotobuf_lite_srcs
 	)
 
 if(MSVC)
-	list(APPEND libprotobuf_lite_files
+	list(APPEND libprotobuf_lite_srcs
 		${protobuf_source_dir}/src/google/protobuf/stubs/atomicops_internals_x86_msvc.cc)
 endif()
 
 # gcc
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-	list(APPEND libprotobuf_lite_files
+	list(APPEND libprotobuf_lite_srcs
 		${protobuf_source_dir}/src/google/protobuf/stubs/atomicops_internals_x86_gcc.cc)
 endif()
 
