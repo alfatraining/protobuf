@@ -6,7 +6,7 @@ option(BUILD_TESTING "Build tests" OFF)
 option(BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
 option(USE_ZLIB "Build with zlib support" OFF)
 if(MSVC)
-	OPTION(LINK_STATIC_RUNTIME "Link with msvc static runtime" OFF)
+	OPTION(MSVC_LINK_STATIC_RUNTIME "Link with msvc static runtime" OFF)
 endif()
 
 # debug libraries can coexist with release libraries, so make debug names different
@@ -46,7 +46,7 @@ if(CMAKE_USE_PTHREADS_INIT)
 endif()
 
 # statically link msvc runtime
-if(MSVC AND LINK_STATIC_RUNTIME)
+if(MSVC AND MSVC_LINK_STATIC_RUNTIME)
 	message(STATUS "Linking runtime statically")
 	foreach(flag_var
 		CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE

@@ -29,7 +29,7 @@ if(MSVC)
 endif()
 
 # gcc
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
 	list(APPEND libprotobuf_lite_files
 		${protobuf_source_dir}/src/google/protobuf/stubs/atomicops_internals_x86_gcc.cc)
 endif()
