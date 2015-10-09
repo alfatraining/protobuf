@@ -13,7 +13,7 @@ endif()
 set(CMAKE_DEBUG_POSTFIX "d")
 
 # Path to main configure script
-set(protobuf_CONFIGURE_SCRIPT "../configure.ac")
+set(protobuf_CONFIGURE_SCRIPT "configure.ac")
 
 # Parse version from configure script
 file(STRINGS "${protobuf_CONFIGURE_SCRIPT}" protobuf_VERSION_LINE
@@ -75,20 +75,21 @@ if (MSVC)
 
 	string(REPLACE "/" "\\" PROTOBUF_SOURCE_WIN32_PATH ${protobuf_SOURCE_DIR})
 	string(REPLACE "/" "\\" PROTOBUF_BINARY_WIN32_PATH ${protobuf_BINARY_DIR})
-	configure_file(extract_includes.bat.in extract_includes.bat)
+	configure_file(cmake/extract_includes.bat.in extract_includes.bat)
 endif()
 
 # strips the cmake part in the path
-get_filename_component(protobuf_source_dir ${protobuf_SOURCE_DIR} PATH)
+# get_filename_component(protobuf_source_dir ${protobuf_SOURCE_DIR} PATH)
+set(protobuf_source_dir ${protobuf_SOURCE_DIR})
 set(protobuf_public_hdr_dir "${protobuf_source_dir}/src")
 
-add_subdirectory(libprotobuf-lite)
-add_subdirectory(libprotobuf)
-add_subdirectory(libprotoc)
-add_subdirectory(protoc)
+add_subdirectory(cmake/libprotobuf-lite)
+add_subdirectory(cmake/libprotobuf)
+add_subdirectory(cmake/libprotoc)
+add_subdirectory(cmake/protoc)
 
 if (BUILD_TESTING)
-	include(tests.cmake)
+	include(cmake/tests.cmake)
 endif()
 
 install(DIRECTORY "${protobuf_source_dir}/src/google"
